@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.scss';
 
+import Status from '../Status';
+
 const Cabecalho = props => {
   return (
     <div className="cabecalho">
@@ -8,7 +10,7 @@ const Cabecalho = props => {
 
       <p className="cabecalho__texto">Clique em um nome e te daremos informações úteis sobre a raça e uma imagem bem bonita.</p>
 
-      <p className="cabecalho__status">{props.status}</p>
+      <Status status={props.status}/>
     </div>
   )
 }
