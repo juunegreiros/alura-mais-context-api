@@ -11,7 +11,12 @@ const buscaTodasInformacoes = () => axios
   .get(`${informacoesApiUrl}/breeds`)
   .then(resposta => resposta.data)
 
-  export {
+const buscaTodasRacas = () => axios
+  .get(`${imagensApiUrl}/breeds/list/all`)
+  .then(resposta => Object.keys(resposta.data.message))
+
+export {
   buscaImagemPorRaca,
-  buscaTodasInformacoes
+  buscaTodasInformacoes,
+  buscaTodasRacas
 }
