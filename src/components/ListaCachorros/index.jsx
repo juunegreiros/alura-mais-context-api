@@ -1,21 +1,29 @@
 import React from 'react'
 import './styles.scss'
 
-const ListaCachorros = props => {
+import { RacasContext } from '../../context';
+
+const ListaCachorros = () => {
   return (
-    <ul className="lista-cachorros">
+    <RacasContext.Consumer>
       {
-        props.cachorros.map(cachorro => (
-          <li
-            className="lista-cachorros__item"
-            key={cachorro.id}
-            onClick={() => props.selecionaCachorro(cachorro.name)}
-          >
-            {cachorro.name}
-          </li>
-        ))
+        ({ cachorros, selecionaCachorro }) => (
+          <ul className="lista-cachorros">
+            {
+              cachorros.map(cachorro => (
+                <li
+                className="lista-cachorros__item"
+                key={cachorro.id}
+                onClick={() => selecionaCachorro(cachorro.name)}
+                >
+                  {cachorro.name}
+                </li>
+              ))
+            }
+          </ul>
+        )
       }
-    </ul>
+    </RacasContext.Consumer>
   )
 }
 

@@ -13,14 +13,4 @@
   &__texto {
     margin: 0;
   }
-
-  &__status {
-    background-color: $branco;
-    padding: 10px;
-    display: inline-block;
-    font-weight: bold;
-    // border: 1px solid $rosa-claro;
-    box-shadow: 0 0 8px rgba($rosa-claro, .5);
-
-  }
 }
