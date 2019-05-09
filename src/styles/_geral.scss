@@ -1,0 +1,11 @@
+@import "./variaveis";
+
+body {
+  background-color: $azul-claro;
+  font-family: $fonte-padrao;
+}
+
+.container {
+  padding: 30px;
+  margin: 0 auto;
+}

@@ -1,11 +1,16 @@
 import React from 'react'
+import './styles.scss'
 
 const ListaCachorros = props => {
   return (
-    <ul>
+    <ul className="lista-cachorros">
       {
         props.cachorros.map(cachorro => (
-          <li key={cachorro.id} onClick={() => props.selecionaCachorro(cachorro.name)}>
+          <li
+            className="lista-cachorros__item"
+            key={cachorro.id}
+            onClick={() => props.selecionaCachorro(cachorro.name)}
+          >
             {cachorro.name}
           </li>
         ))

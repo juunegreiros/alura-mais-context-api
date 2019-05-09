@@ -1,8 +1,9 @@
 import React from 'react';
+import './styles/index.scss';
 
 import CachorroSelecionado from './components/CachorroSelecionado';
 import ListaCachorros from './components/ListaCachorros';
-import MensagemStatus from './components/MensagemStatus';
+import Cabecalho from './components/Cabecalho';
 
 import { buscaTodasInformacoes, buscaImagemPorRaca, buscaTodasRacas } from './api';
 
@@ -26,7 +27,9 @@ class App extends React.Component {
       .then(informacoes => {
         this.carregaListaRacas(informacoes)
       })
-      .catch(erro => this.setState({ status: 'Oops, algo deu errado no carregamento da página. Pode tentar novamente?'}))
+      .catch(erro => this.setState({
+        status: 'Oops, algo deu errado no carregamento da página. Pode tentar novamente?'
+      }))
     }
 
     carregaListaRacas(informacoes) {
@@ -40,27 +43,28 @@ class App extends React.Component {
     }
 
     selecionaCachorro = raca => {
-      buscaImagemPorRaca(raca)
-      .then(imagem => this.setState({
-        racaSelecionada: {...this.state.racaSelecionada, imagem},
-        status: 'A imagem sempre será diferente, pode clicar quantas vezes quiser!'
-      }))
-      .catch(erro => {
-        const eh404 = erro.response.status === 404;
-        const mensagem = eh404 ? 'Não encontramos essa raça :(' : 'Oops, algo deu errado. Pode tentar novamente?'
+      const infoSelecionada = this.state.racas.filter(infoRaca => infoRaca.name === raca)
 
-        this.setState({status: mensagem})
-      })
+      buscaImagemPorRaca(raca)
+        .then(imagem => this.setState({
+          racaSelecionada: {...this.state.racaSelecionada, imagem, ...infoSelecionada[0]},
+          status: 'A imagem sempre será diferente, pode clicar quantas vezes quiser!'
+        }))
+        .catch(erro => {
+          const eh404 = erro.response.status === 404;
+          const mensagem = eh404 ? 'Não encontramos essa raça :(' : 'Oops, algo deu errado. Pode tentar novamente?'
+
+          this.setState({status: mensagem})
+        })
   }
 
   render() {
-    console.log(this.state)
     return (
-      <>
-        <MensagemStatus status={this.state.status} />
+      <div className="container">
+        <Cabecalho status={this.state.status} />
         <CachorroSelecionado cachorro={this.state.racaSelecionada} />
         <ListaCachorros cachorros={this.state.racas} selecionaCachorro={this.selecionaCachorro} />
-      </>
+      </div>
     )
   }
 }
