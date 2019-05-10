@@ -1,18 +1,11 @@
-import React from 'react';
-import './styles.scss';
+import { connect } from 'react-redux';
 
-import Status from '../Status';
+import Cabecalho from './componente';
 
-const Cabecalho = props => {
-  return (
-    <div className="cabecalho">
-      <h1 className="cabecalho__titulo">Seja bem-vindo ao InfoCão</h1>
+const mapStateToProps = state => ({
+  status: state.status
+});
 
-      <p className="cabecalho__texto">Clique em um nome e te daremos informações úteis sobre a raça e uma imagem bem bonita.</p>
-
-      <Status status={props.status}/>
-    </div>
-  )
-}
-
-export default Cabecalho
+export default connect(
+  mapStateToProps
+)(Cabecalho);

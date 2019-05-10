@@ -1,22 +1,19 @@
-import React from 'react'
-import './styles.scss'
+import { connect } from 'react-redux';
+import { adicionaRacas, adicionaRacaSelecionada, adicionaStatus } from '../../store/actions';
+import ListaCachorros from './componente';
 
-const ListaCachorros = props => {
-  return (
-    <ul className="lista-cachorros">
-      {
-        props.cachorros.map(cachorro => (
-          <li
-            className="lista-cachorros__item"
-            key={cachorro.id}
-            onClick={() => props.selecionaCachorro(cachorro.name)}
-          >
-            {cachorro.name}
-          </li>
-        ))
-      }
-    </ul>
-  )
-}
+const mapDispatchToProps = dispatch => ({
+  adicionaRacas: racas => dispatch(adicionaRacas(racas)),
+  adicionaRacaSelecionada: racaSelecionada => dispatch(adicionaRacaSelecionada(racaSelecionada)),
+  adicionaStatus: status => dispatch(adicionaStatus(status))
+})
 
-export default ListaCachorros
+const mapStateToProps = state => ({
+  cachorros: state.racas,
+  racaSelecionada: state.racaSelecionada
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ListaCachorros);
