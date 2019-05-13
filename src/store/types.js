@@ -1,0 +1,1 @@
+export const ADICIONA_STATUS = 'ADICIONA_STATUS'
