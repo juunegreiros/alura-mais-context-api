@@ -6,11 +6,13 @@ import RacaNaoSelecionada from '../RacaNaoSelecionada'
 const Raca = props => {
   const racaFoiSelecionada = Boolean(props.raca.name)
 
-  if (racaFoiSelecionada) {
-    return (<RacaSelecionada {...props} />)
-  } else {
-    return (<RacaNaoSelecionada />)
-  }
+  return (
+    racaFoiSelecionada
+    ?
+    <RacaSelecionada {...props} />
+    :
+    <RacaNaoSelecionada />
+  )
 }
 
 export default Raca
