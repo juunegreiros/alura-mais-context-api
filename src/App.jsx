@@ -1,11 +1,11 @@
-import React from 'react';
-import './styles/index.scss';
+import React from 'react'
+import './styles/index.scss'
 
-import CachorroSelecionado from './components/CachorroSelecionado';
-import ListaCachorros from './components/ListaCachorros';
-import Cabecalho from './components/Cabecalho';
+import Raca from './components/Raca'
+import ListaRacas from './components/ListaRacas'
+import Cabecalho from './components/Cabecalho'
 
-import { buscaTodasInformacoes, buscaImagemPorRaca, buscaTodasRacas } from './api';
+import { buscaSobreRacas, buscaImagemPorRaca, buscaTodasRacas } from './api'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   carregaInformacoesIniciais() {
-    buscaTodasInformacoes()
+    buscaSobreRacas()
       .then(informacoes => {
         this.carregaListaRacas(informacoes)
       })
@@ -32,17 +32,17 @@ class App extends React.Component {
       }))
     }
 
-    carregaListaRacas(informacoes) {
+    carregaListaRacas(sobreRacas) {
       buscaTodasRacas()
         .then(racas => {
-          const listaRacas = informacoes.filter(
-            informacao => racas.includes(informacao.name.toLowerCase())
+          const listaRacasMostradas = sobreRacas.filter(
+            sobre => racas.includes(sobre.name.toLowerCase())
           )
-          this.setState({ racas: [...listaRacas] })
+          this.setState({ racas: [...listaRacasMostradas] })
         })
     }
 
-    selecionaCachorro = raca => {
+    selecionaRaca = raca => {
       const infoSelecionada = this.state.racas.filter(infoRaca => infoRaca.name === raca)
 
       buscaImagemPorRaca(raca)
@@ -51,7 +51,7 @@ class App extends React.Component {
           status: 'A imagem sempre será diferente, pode clicar quantas vezes quiser!'
         }))
         .catch(erro => {
-          const eh404 = erro.response.status === 404;
+          const eh404 = erro.response.status === 404
           const mensagem = eh404 ? 'Não encontramos essa raça :(' : 'Oops, algo deu errado. Pode tentar novamente?'
 
           this.setState({status: mensagem})
@@ -62,11 +62,11 @@ class App extends React.Component {
     return (
       <div className="container">
         <Cabecalho status={this.state.status} />
-        <CachorroSelecionado cachorro={this.state.racaSelecionada} />
-        <ListaCachorros cachorros={this.state.racas} selecionaCachorro={this.selecionaCachorro} />
+        <Raca raca={this.state.racaSelecionada} />
+        <ListaRacas racas={this.state.racas} selecionaRaca={this.selecionaRaca} />
       </div>
     )
   }
 }
 
-export default App;
+export default App

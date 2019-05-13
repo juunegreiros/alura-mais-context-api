@@ -1,8 +1,3 @@
-import React from 'react';
-import './styles.scss';
-
-const Status = props => (
-  <p className="status">{props.status}</p>
-)
+import Status from './Status'
 
 export default Status
