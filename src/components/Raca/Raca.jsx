@@ -2,17 +2,23 @@ import React from 'react'
 
 import RacaSelecionada from '../RacaSelecionada'
 import RacaNaoSelecionada from '../RacaNaoSelecionada'
+import RacaSelecionadaContext from '../../context/racaSelecionada'
 
-const Raca = props => {
-  const racaFoiSelecionada = Boolean(props.raca.name)
-
-  return (
-    racaFoiSelecionada
-    ?
-    <RacaSelecionada {...props} />
-    :
-    <RacaNaoSelecionada />
-  )
-}
+const Raca = () => (
+  <RacaSelecionadaContext.Consumer>
+    {
+      ({name}) => {
+        const racaFoiSelecionada = Boolean(name)
+        return (
+          racaFoiSelecionada
+          ?
+          <RacaSelecionada />
+          :
+          <RacaNaoSelecionada />
+        )
+      }
+    }
+  </RacaSelecionadaContext.Consumer>
+)
 
 export default Raca

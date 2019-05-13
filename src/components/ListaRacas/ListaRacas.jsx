@@ -1,21 +1,28 @@
 import React from 'react'
 import './styles.scss'
+import RacasContext from '../../context/racas'
 
-const ListaRacas = props => {
+const ListaRacas = () => {
   return (
-    <ul className="lista-racas">
+    <RacasContext.Consumer>
       {
-        props.racas.map(raca => (
-          <li
-            className="lista-racas__item"
-            key={raca.id}
-            onClick={() => props.selecionaRaca(raca.name)}
-          >
-            {raca.name}
-          </li>
-        ))
+        ({racas, selecionaRaca}) => (
+          <ul className="lista-racas">
+            {
+              racas.map(raca => (
+                <li
+                  className="lista-racas__item"
+                  key={raca.id}
+                  onClick={() => selecionaRaca(raca.name)}
+                >
+                  {raca.name}
+                </li>
+              ))
+            }
+          </ul>
+        )
       }
-    </ul>
+    </RacasContext.Consumer>
   )
 }
 

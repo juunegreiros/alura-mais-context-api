@@ -1,8 +1,15 @@
 import React from 'react'
 import './styles.scss'
+import StatusContext from '../../context/status'
 
-const Status = props => (
-  <p className="status">{props.status}</p>
+const Status = () => (
+  <StatusContext.Consumer>
+    {
+      status => (
+        <p className="status">{status}</p>
+      )
+    }
+  </StatusContext.Consumer>
 )
 
 export default Status
