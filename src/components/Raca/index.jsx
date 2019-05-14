@@ -1,2 +1,8 @@
+import { connect } from 'react-redux'
 import Raca from './Raca'
-export default Raca
+
+const mapStateToProps = state => ({
+  racaSelecionada: state.racaSelecionada
+})
+
+export default connect(mapStateToProps)(Raca)
