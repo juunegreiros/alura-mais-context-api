@@ -1,0 +1,16 @@
+@import "../../styles/variaveis";
+
+.cabecalho {
+  text-align: center;
+  color: $rosa;
+
+  &__titulo {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__texto {
+    margin: 0;
+  }
+}

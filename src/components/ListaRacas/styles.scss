@@ -1,0 +1,24 @@
+@import "../../styles/variaveis";
+
+.lista-racas {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  &__item {
+    background-color: $rosa;
+    border: 2px solid $rosa-claro;
+    border-radius: 5px;
+    color: $branco;
+    cursor: pointer;
+    flex-grow: 1;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+
+    &:hover {
+      background-color: $rosa-claro;
+      color: $rosa;
+    }
+  }
+}

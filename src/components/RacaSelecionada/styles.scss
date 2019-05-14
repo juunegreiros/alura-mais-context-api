@@ -1,0 +1,45 @@
+@import "../../styles/variaveis";
+
+.raca-selecionada {
+  width: 300px;
+  margin: 0 auto;
+  border: 4px solid $rosa;
+  border-radius: 5px;
+  text-align: center;
+  background-color: $rosa-claro;
+  display: flex;
+  flex-direction: column;
+
+  &.invisivel {
+    display: none;
+  }
+
+  &__nome {
+    margin: 0;
+    background-color: $rosa;
+    color: $branco;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  &__info {
+    background-color: $rosa;
+    margin: 0;
+    color: $branco;
+    padding: 5px;
+    font-size: 14px;
+
+    &__descricao {
+      font-weight: bold;
+    }
+  }
+
+  &__imagem {
+    max-width: 100%;
+    min-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+    flex-grow: 1;
+  }
+}
